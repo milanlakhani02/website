@@ -27,7 +27,80 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+
 </head>
+<script>
+
+  $(window).load(function () {
+    // var $myGroup = $('#myGroup');
+    // $myGroup.on('show', '.collapse', function () {
+    //   $myGroup.find('.collapse.in').collapse('hide');
+    // });
+    $("section img").click(function () {
+      $(".lightbox").fadeIn(300);
+      $(".lightbox").append("<img src='" + $(this).attr("src") + "' alt='" + $(this).attr("alt") + "' />");
+      $(".filter").css("background-image", "url(" + $(this).attr("src") + ")");
+      /*$(".title").append("<h1>" + $(this).attr("alt") + "</h1>");*/
+      $("html").css("overflow", "hidden");
+      if ($(this).is(":last-child")) {
+        $(".arrowr").css("display", "none");
+        $(".arrowl").css("display", "block");
+      } else if ($(this).is(":first-child")) {
+        $(".arrowr").css("display", "block");
+        $(".arrowl").css("display", "none");
+      } else {
+        $(".arrowr").css("display", "block");
+        $(".arrowl").css("display", "block");
+      }
+    });
+
+    $(".close").click(function () {
+      $(".lightbox").fadeOut(300);
+      $("h1").remove();
+      $(".lightbox img").remove();
+      $("html").css("overflow", "auto");
+    });
+
+    $(document).keyup(function (e) {
+      if (e.keyCode == 27) {
+        $(".lightbox").fadeOut(300);
+        $(".lightbox img").remove();
+        $("html").css("overflow", "auto");
+      }
+    });
+
+    $(".arrowr").click(function () {
+      var imgSrc = $(".lightbox img").attr("src");
+      var search = $("section").find("img[src$='" + imgSrc + "']");
+      var newImage = search.next().attr("src");
+      /*$(".lightbox img").attr("src", search.next());*/
+      $(".lightbox img").attr("src", newImage);
+      $(".filter").css("background-image", "url(" + newImage + ")");
+
+      if (!search.next().is(":last-child")) {
+        $(".arrowl").css("display", "block");
+      } else {
+        $(".arrowr").css("display", "none");
+      }
+    });
+
+    $(".arrowl").click(function () {
+      var imgSrc = $(".lightbox img").attr("src");
+      var search = $("section").find("img[src$='" + imgSrc + "']");
+      var newImage = search.prev().attr("src");
+      /*$(".lightbox img").attr("src", search.next());*/
+      $(".lightbox img").attr("src", newImage);
+      $(".filter").css("background-image", "url(" + newImage + ")");
+
+      if (!search.prev().is(":first-child")) {
+        $(".arrowr").css("display", "block");
+      } else {
+        $(".arrowl").css("display", "none");
+      }
+    });
+
+  });
+</script>
 <script type='application/ld+json'>
   {
     "@context": "http://www.schema.org",
@@ -49,15 +122,16 @@
             width: 115px;" />
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse">
             <ul class="navbar-nav  ">
               <li class="nav-item active">
                 <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="#360"> 360 Degree</a>
               </li>
@@ -103,151 +177,146 @@
     </header>
     <!-- end header section -->
     <!-- slider section -->
-    <section class="slider_section">
-      <div class="play_btn">
+    <section class="slider_section" id="360">
+      <!-- <div class="play_btn">
         <a href="">
           <img src="images/play.png" alt="">
         </a>
-      </div>
+      </div> -->
       <div class="number_box">
         <div>
           <ol class="carousel-indicators indicator-2">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">01</li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1">02</li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2">03</li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="3">04</li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="0" class="active">01</li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="1">02</li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="2">03</li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="3">04</li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="3">05</li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="3">06</li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="3">07</li>
+
+
           </ol>
         </div>
       </div>
       <div class="container">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <div id="carouselExampleIndicatorssss" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators" style="padding-bottom: 130px;">
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="4"></li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="5"></li>
+            <li data-target="#carouselExampleIndicatorssss" data-slide-to="6"></li>
+
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="row">
-                <div class="col-md-6">
+                <!-- <div class="col-md-3">
                   <div class="detail-box">
-                    <h1>
-                      The Latest
-                      <span>
-                        Interior design
-                      </span>
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                      do eiusmod tempor incididunt ut labore
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1">
-                        Read More
-                      </a>
-                      <a href="" class="btn-2">
-                        Contact us
-                      </a>
+                    <div class="heading_container">
+                      <h2>
+                        360 degree
+                        Banquet Hall
+                      </h2>
                     </div>
                   </div>
+                </div> -->
+                <div class="col-md-12">
+                  <div class="detail-box">
+                    <div class="heading_container">
+                      <img src="images/interior/bedroom.jpg" style="width: 100%; height: 500px;" alt="">
+                    </div>
+                  </div>
+
                 </div>
-                <div class="col-md-6 img-container">
-                  <div class="img-box">
-                    <!-- <video src="videos/banner1.mp4" loop="" muted="" playsinline="" autoplay=""></video> -->
-                    <img src="images/interior/bedroom3.jpg" alt="">
+              </div>
+            </div>
+            <div class="carousel-item ">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="detail-box">
+                    <div class="heading_container">
+                      <img src="images/interior/bedroom.jpg" style="width: 100%; height: 500px;" alt="">
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="carousel-item ">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="detail-box">
-                    <h1>
-                      The Lates
-                      <span>
-                        Interior design </span>
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                      do eiusmod tempor incididunt ut labore
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1">
-                        Read More
-                      </a>
-                      <a href="" class="btn-2">
-                        Contact us
-                      </a>
+                    <div class="heading_container">
+                      <img src="images/interior/bedroom.jpg" style="width: 100%; height: 500px;" alt="">
                     </div>
-                  </div>
-                </div>
-                <div class="col-md-6 img-container">
-                  <div class="img-box">
-                    <img src="images/interior/bedroom1.jpg" alt="">
                   </div>
                 </div>
               </div>
             </div>
             <div class="carousel-item ">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="detail-box">
-                    <h1>
-                      The Latest
-                      <span>
-                        Interior design
-                      </span>
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                      do eiusmod tempor incididunt ut labore
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1">
-                        Read More
-                      </a>
-                      <a href="" class="btn-2">
-                        Contact us
-                      </a>
+                    <div class="heading_container">
+                      <img src="images/interior/bedroom.jpg" style="width: 100%; height: 500px;" alt="">
                     </div>
-                  </div>
-                </div>
-                <div class="col-md-6 img-container">
-                  <div class="img-box">
-                    <img src="images/interior/PHOTO-2019-06-18-12-54-25(10).jpg" alt="">
                   </div>
                 </div>
               </div>
             </div>
             <div class="carousel-item ">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="detail-box">
-                    <h1>
-                      The Latest
-                      <span>
-                        Interior design
-                      </span>
-                    </h1>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                      do eiusmod tempor incididunt ut labore
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1">
-                        Read More
-                      </a>
-                      <a href="" class="btn-2">
-                        Contact us
-                      </a>
+                    <div class="heading_container">
+                      <img src="images/interior/bedroom.jpg" style="width: 100%; height: 500px;" alt="">
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6 img-container">
-                  <div class="img-box">
-                    <img src="images/interior/PHOTO-2019-06-18-12-54-25(11).jpg" alt="">
+              </div>
+            </div>
+            <div class="carousel-item ">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="detail-box">
+                    <div class="heading_container">
+                      <img src="images/interior/bedroom.jpg" style="width: 100%; height: 500px;" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item ">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="detail-box">
+                    <div class="heading_container">
+                      <img src="images/interior/bedroom.jpg" style="width: 100%; height: 500px;" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item ">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="detail-box">
+                    <div class="heading_container">
+                      <img src="images/interior/bedroom.jpg" style="width: 100%; height: 500px;" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item ">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="detail-box">
+                    <div class="heading_container">
+                      <img src="images/interior/bedroom.jpg" style="width: 100%; height: 500px;" alt="">
+                    </div>
                   </div>
                 </div>
               </div>
@@ -479,35 +548,164 @@
   <!-- end 360 -->
 
   <!-- about section -->
+  <div class="row" style="padding-top:50px;text-align: center;">
 
-  <section class="about_section layout_padding" id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h2>
-                About Us
-              </h2>
 
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam
-            </p>
-            <a href="">
-              Read More
-            </a>
-          </div>
+
+
+  </div>
+  <div class="col-md-12">
+
+    <!-- <div id="myGroup">
+      <button class="btn dropdown" data-toggle="collapse" data-target="#visualization">
+        Visualization</button>
+
+      <button class="btn " data-toggle="collapse" data-target="#interior">
+        Animation</button>
+
+      <button class="btn dropdown" data-toggle="collapse" data-target="#interior">
+        Interior</button>
+      <button class="btn dropdown" data-toggle="collapse" data-target="#exterior">
+        Exterior</button>
+    </div> -->
+    <div class="col-md-12 mx-auto justify-content-center">
+
+      <!-- <button class="btn dropdown" data-toggle="collapse" data-target="#visualization">
+        Visualization</button>
+
+      <button class="btn " data-toggle="collapse" data-target="#interior">
+        Animation</button>
+      <button class="btn " data-toggle="collapse" data-target="#threesixzero">
+        360</button>
+      <button class="btn dropdown" data-toggle="collapse" data-target="#interior">
+        Interior</button>
+      <button class="btn dropdown" data-toggle="collapse" data-target="#exterior">
+        Exterior</button>  -->
+
+
+      <div class="accordion-group" id="accordion" class="accordion">
+
+        <div class="list-group list-group-horizontal mx-auto justify-content-center">
+
+          <a href="#" class="list-group-item active" data-toggle="collapse" data-target="#visualization"
+            style="cursor: pointer !important;" aria-expanded="false" data-parent="#accordion">Visualization</a>
+
+          <a href="#" class="list-group-item active" data-toggle="collapse" data-target="#animation"
+            style="cursor: pointer !important;" aria-expanded="false" data-parent="#accordion">Animation</a>
+
+          <a href="#" class="list-group-item active" data-toggle="collapse" data-target="#threesixzero"
+            style="cursor: pointer !important;" aria-expanded="false" data-parent="#accordion">360</a>
+          <a href="#" class="list-group-item active" data-toggle="collapse" data-target="#interior"
+            style="cursor: pointer !important;" aria-expanded="false" data-parent="#accordion">Interior</a>
+          <a href="#" class="list-group-item active" data-toggle="collapse" data-target="#exterior"
+            style="cursor: pointer !important;" aria-expanded="false" data-parent="#accordion">Exterior
+          </a>
         </div>
-        <div class="col-md-6">
-          <div class="img-box">
-            <img src="images/about-img.png" alt="">
-          </div>
+        <div class="collapse show" id="visualization" data-parent="#accordion">
+          
+          <section>
+            <img src="https://unsplash.it/700/600?image=634" />
+            <img src="https://unsplash.it/700/300?image=455" />
+            <img src="https://unsplash.it/1500/700?image=629" />
+            <img src="https://unsplash.it/700?image=594" />
+            <img src="https://unsplash.it/700/450?image=417" />
+            <img src="https://unsplash.it/700/400?image=410" />
+            <img src="https://unsplash.it/700/550?image=628" />
+            <img src="https://unsplash.it/700/450?image=421" />
+            <img src="https://unsplash.it/700/567?image=572" />
+            <img src="https://unsplash.it/700/978?image=623" />
+            <img src="https://unsplash.it/700/654?image=621" />
+            <img src="https://unsplash.it/700/500?image=423" />
+            <img src="https://unsplash.it/1000/654?image=930" />
+            <img src="https://unsplash.it/700/950?image=1045" />
+          </section>
+        </div>
+        <div class="collapse indent" id="animation" data-parent="#accordion">
+          <section>
+            <img src="https://unsplash.it/700/600?image=634" />
+            <img src="https://unsplash.it/700/300?image=455" />
+            <img src="https://unsplash.it/1500/700?image=629" />
+            <img src="https://unsplash.it/700?image=594" />
+            <img src="https://unsplash.it/700/450?image=417" />
+            <img src="https://unsplash.it/700/400?image=410" />
+            <img src="https://unsplash.it/700/550?image=628" />
+            <img src="https://unsplash.it/700/450?image=421" />
+            <img src="https://unsplash.it/700/567?image=572" />
+            <img src="https://unsplash.it/700/978?image=623" />
+            <img src="https://unsplash.it/700/654?image=621" />
+            <img src="https://unsplash.it/700/500?image=423" />
+            <img src="https://unsplash.it/1000/654?image=930" />
+            <img src="https://unsplash.it/700/950?image=1045" />
+          </section>
+        </div>
+        <div class="collapse indent" id="threesixzero" data-parent="#accordion">
+          
+          <section>
+            <img src="https://unsplash.it/700/600?image=634" />
+            <img src="https://unsplash.it/700/300?image=455" />
+            <img src="https://unsplash.it/1500/700?image=629" />
+            <img src="https://unsplash.it/700?image=594" />
+            <img src="https://unsplash.it/700/450?image=417" />
+            <img src="https://unsplash.it/700/400?image=410" />
+            <img src="https://unsplash.it/700/550?image=628" />
+            <img src="https://unsplash.it/700/450?image=421" />
+            <img src="https://unsplash.it/700/567?image=572" />
+            <img src="https://unsplash.it/700/978?image=623" />
+            <img src="https://unsplash.it/700/654?image=621" />
+            <img src="https://unsplash.it/700/500?image=423" />
+            <img src="https://unsplash.it/1000/654?image=930" />
+            <img src="https://unsplash.it/700/950?image=1045" />
+          </section>
+        </div>
+        <div class="collapse indent" id="interior" data-parent="#accordion">
+          
+          <section>
+            <img src="https://unsplash.it/700/600?image=634" />
+            <img src="https://unsplash.it/700/300?image=455" />
+            <img src="https://unsplash.it/1500/700?image=629" />
+            <img src="https://unsplash.it/700?image=594" />
+            <img src="https://unsplash.it/700/450?image=417" />
+            <img src="https://unsplash.it/700/400?image=410" />
+            <img src="https://unsplash.it/700/550?image=628" />
+            <img src="https://unsplash.it/700/450?image=421" />
+            <img src="https://unsplash.it/700/567?image=572" />
+            <img src="https://unsplash.it/700/978?image=623" />
+            <img src="https://unsplash.it/700/654?image=621" />
+            <img src="https://unsplash.it/700/500?image=423" />
+            <img src="https://unsplash.it/1000/654?image=930" />
+            <img src="https://unsplash.it/700/950?image=1045" />
+          </section>
+        </div>
+        <div class="collapse indent" id="exterior" data-parent="#accordion">
+          
+          <section>
+            <img src="https://unsplash.it/700/600?image=634" />
+            <img src="https://unsplash.it/700/300?image=455" />
+            <img src="https://unsplash.it/1500/700?image=629" />
+            <img src="https://unsplash.it/700?image=594" />
+            <img src="https://unsplash.it/700/450?image=417" />
+            <img src="https://unsplash.it/700/400?image=410" />
+            <img src="https://unsplash.it/700/550?image=628" />
+            <img src="https://unsplash.it/700/450?image=421" />
+            <img src="https://unsplash.it/700/567?image=572" />
+            <img src="https://unsplash.it/700/978?image=623" />
+            <img src="https://unsplash.it/700/654?image=621" />
+            <img src="https://unsplash.it/700/500?image=423" />
+            <img src="https://unsplash.it/1000/654?image=930" />
+            <img src="https://unsplash.it/700/950?image=1045" />
+          </section>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+
+  <div class="lightbox">
+    <div class="title"></div>
+    <div class="filter"></div>
+    <div class="arrowr"></div>
+    <div class="arrowl"></div>
+    <div class="close"></div>
+  </div>
 
   <!-- end about section -->
 
@@ -646,13 +844,9 @@
   <!-- end trending section -->
 
   <!-- discount section -->
-
+  <!-- 
   <section class="slider_section" id="videos">
-    <!-- <div class="play_btn">
-      <a href="">
-        <img src="images/play.png" alt="">
-      </a>
-    </div> -->
+   
     <div class="number_box">
       <div>
         <ol class="carousel-indicators indicator-2">
@@ -678,7 +872,7 @@
                 <div class="col-md-6 img-container">
                   <div class="img-box">
                     <video src="videos/banner1.mp4" loop="" muted="" playsinline="" autoplay=""></video>
-                    <!-- <img src="images/interior/bedroom3.jpg" alt=""> -->
+                    
                   </div>
                 </div>
               </div>
@@ -705,11 +899,11 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
 
   <!-- end discount section -->
-  <section class="trending_section layout_padding" id="treading">
+  <!-- <section class="trending_section layout_padding" id="treading">
     <div id="accordion">
       <div class="container">
         <div class="row">
@@ -835,11 +1029,11 @@
       </div>
     </div>
 
-  </section>
+  </section> -->
   <!-- brand section -->
 
 
-  <section class="brand_section" id="shop">
+  <!-- <section class="brand_section" id="shop">
     <div class="container">
       <div class="heading_container">
         <h2>
@@ -906,13 +1100,13 @@
         See More
       </a>
     </div>
-  </section>
+  </section> -->
 
 
   <!-- end brand section -->
   <!-- contact section -->
 
-  <section class="contact_section layout_padding" id="contactus">
+  <!-- <section class="contact_section layout_padding" id="contactus">
     <div class="container ">
       <div class="heading_container">
         <h2 class="">
@@ -959,12 +1153,12 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- end contact section -->
 
   <!-- client section -->
-  <section class="client_section layout_padding-bottom" id="testimonial">
+  <!-- <section class="client_section layout_padding-bottom" id="testimonial">
     <div class="container">
       <div class="heading_container">
         <h2>
@@ -1028,29 +1222,12 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!-- end client section -->
   <!-- Messager -->
   <!-- Messenger Chat Plugin Code -->
-  <div id="fb-root"></div>
-
-  <!-- Your Chat Plugin code -->
-  <div id="fb-customer-chat" class="fb-customerchat">
-  </div>
-  <script>
-    function sendMail() {
-
-      var name = document.getElementById("name").value;
-      var phone = document.getElementById("phone").value;
-      var subject = document.getElementById("subject").value;
-      var email = document.getElementById("email").value;
-      var message = document.getElementById("message").value;
-      var fullBody = "Full Name : " + name + "</br> Phone No : " + phone + "</br> message </br>" + message
-      window.open('mailto:info@eyeviewinfo.com?subject=' + subject + '&body=' + fullBody + '');
-    }
-  </script>
-  <script>
+  <!-- <script>
     var chatbox = document.getElementById('fb-customer-chat');
     chatbox.setAttribute("page_id", "106877668299319");
     chatbox.setAttribute("attribution", "biz_inbox");
@@ -1068,151 +1245,25 @@
       js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-  </script>
+  </script> -->
   <!-- End messgerner -->
   <!-- info section -->
-  <section class="info_section layout_padding2">
+
+
+  <section class="info_section">
     <div class="container">
       <div class="info_logo">
         <h2>
           EyeView
         </h2>
+
       </div>
-      <div class="row">
-        <!-- <div itemscope itemtype="http://schema.org/LocalBusiness">
-          <a itemprop="url" href="https://kamleshknskumawat.github.io/website/">
-            <div itemprop="name"><strong>EyeView</strong></div>
-          </a>
-          <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-            <strong>Address : </strong><br><span itemprop="streetAddress">Ahmedabad gujarat</span>,<br>
-            <span itemprop="addressLocality">ahmedabad</span>,<br>
-            <span itemprop="addressRegion">GUJARAT</span> -
-            <span itemprop="postalCode">380009</span><br>
-            <span itemprop="addressCountry">India</span>.<br>
-          </div>
-        </div> -->
-
-
-        <div class="col-md-3" itemscope itemtype="http://schema.org/LocalBusiness" itemprop="address">
-          <div class="info_contact" itemscope itemtype="http://schema.org/PostalAddress">
-            <h5>
-              EyeView
-            </h5>
-            <div>
-              <div class="img-box">
-                <img src="images/location-white.png" width="18px" alt="">
-              </div>
-              <strong>Address : </strong></br>
-              <span itemprop="streetAddress">Ahmedabad Gujarat</span>,<br>
-              <!-- <span itemprop="addressLocality">ahmedabad</span>,<br>
-              <span itemprop="addressRegion">GUJARAT</span> -
-              <span itemprop="postalCode">380009</span><br>
-              <span itemprop="addressCountry">India</span>.<br> -->
-            </div>
-            <div>
-              <div class="img-box">
-                <img src="images/telephone-white.png" width="12px" alt="">
-              </div>
-              <p>
-                +91 9662705684
-              </p>
-            </div>
-            <div>
-              <div class="img-box">
-                <img src="images/envelope-white.png" width="18px" alt="">
-              </div>
-              <a href="mailto:onfo@eyeview3d.com">
-                onfo@eyeview3d.com
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="info_info">
-            <h5>
-              Informations
-            </h5>
-            <p>
-              Provide 3d interior design in Ahmedabad Gujarat
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="info_insta">
-            <h5>
-              Instagram
-            </h5>
-            <div class="insta_container">
-              <div>
-                <a href="">
-                  <div class="insta-box b-1">
-                    <img src="images/i-1.jpg" alt="">
-                  </div>
-                </a>
-                <a href="">
-                  <div class="insta-box b-2">
-                    <img src="images/i-2.jpg" alt="">
-                  </div>
-                </a>
-              </div>
-
-              <div>
-                <a href="">
-                  <div class="insta-box b-3">
-                    <img src="images/i-3.jpg" alt="">
-                  </div>
-                </a>
-                <a href="">
-                  <div class="insta-box b-4">
-                    <img src="images/i-4.jpg" alt="">
-                  </div>
-                </a>
-              </div>
-              <div>
-                <a href="">
-                  <div class="insta-box b-3">
-                    <img src="images/i-5.jpg" alt="">
-                  </div>
-                </a>
-                <a href="">
-                  <div class="insta-box b-4">
-                    <img src="images/i-6.jpg" alt="">
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="info_form ">
-            <h5>
-              Newsletter
-            </h5>
-            <form action="">
-              <input type="email" placeholder="Enter your email">
-              <button>
-                Subscribe
-              </button>
-            </form>
-            <div class="social_box">
-              <a href="">
-                <img src="images/fb.png" alt="">
-              </a>
-              <a href="">
-                <img src="images/twitter.png" alt="">
-              </a>
-              <a href="">
-                <img src="images/linkedin.png" alt="">
-              </a>
-              <a href="">
-                <img src="images/youtube.png" alt="">
-              </a>
-            </div>
-          </div>
-        </div>
+      <div style="align-items: center;">
+        <a href="mailto:info@eyeview3d.com"><img src="images/envelope-white.png" style="width: 18px !important; margin: 10px;" />Email Us</a> |
+        <a href="tel:+919228277654"><img src="images/telephone-white.png" style="width: 12px !important; margin: 10px;"/>Phone</a>
       </div>
     </div>
+
   </section>
 
   <!-- end info_section -->
@@ -1235,6 +1286,20 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
   </script>
   <script type="text/javascript">
+
+    /* always keep at least 1 open by preventing the current to close itself */
+    $('[data-toggle="collapse"]').on('click', function (e) {
+      console.log(e);
+      if ($(this).parents('.accordion').find('.collapse.show')) {
+        var idx = $(this).index('[data-toggle="collapse"]');
+        if (idx == $('.collapse.show').index('.collapse')) {
+          // prevent collapse
+          e.stopPropagation();
+        }
+      }
+    });
+
+
     $(".owl-carousel").owlCarousel({
       loop: true,
       margin: 10,
@@ -1333,5 +1398,15 @@
      </script>
 </body>
 </body>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<!-- or -->
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"
+  integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined"
+  crossorigin="anonymous"></script>
 
 </html>
